@@ -20,8 +20,9 @@ def check_config():
 
     image_save_path = '{}/{}'.format(local_path, config.IMAGE_RELATIVE_PATH)
     if not os.path.exists(image_save_path):
-        notify('{}路径不存在'.format(image_save_path))
-        return False
+        os.makedirs(image_save_path)
+        # notify('{}路径不存在'.format(image_save_path))
+        # return False
 
     return True
 
