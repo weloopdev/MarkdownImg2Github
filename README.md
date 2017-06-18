@@ -1,6 +1,6 @@
 # MarkdownImg2Github
 
-[TOC]
+[[TOC]]
 
 Mac下自动上传图片到`Github`，并把`Markdown`格式的图片`url`复制到`clipboard`
 
