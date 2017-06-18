@@ -1,5 +1,7 @@
 # MarkdownImg2Github
 
+[TOC]
+
 Mac下自动上传图片到`Github`，并把`Markdown`格式的图片`url`复制到`clipboard`
 
 > 该项目供远峰运动团队使用，目前只有Mac版本
@@ -42,6 +44,9 @@ Receiving objects: 100% (4/4), 4.68 KiB | 0 bytes/s, done.
 ![image](https://raw.githubusercontent.com/weloopdev/yfimg/yangxi/tapd/1489334346502.png)
 
 - 第一次使用会让配置参数，配置好之后保存下就ok，如下图:
+
+  > 注意这里使用mac自带的ide编辑config的时候，不要改动到单引号，直接在引号里面填写配置即可
+
   - LOCAL_PATH：从`Github` `git clone`到本地的路径
   - GITHUB_NAME：接入`Github`账号名称，目前我们都放在`weloopdev`这个账号下
   - REPO_NAME：仓库名称，目前我们放在`yfimg`这个仓库下
@@ -59,6 +64,23 @@ Receiving objects: 100% (4/4), 4.68 KiB | 0 bytes/s, done.
 ![image](https://raw.githubusercontent.com/weloopdev/yfimg/yangxi/tapd/1489335617663.png)
 
 
+
+## 已安装后修改部分文件更新方法
+
+假如只修改了部分py文件，可以不用直接导入workflow，只将修改的文件拷贝到workflow目录下即可
+
+- 进入到 `Alfred Preferences`
+- 点击`Workflows`，选中`MarkdownImg2Github`
+- 双击图中区域
+
+![image](https://raw.githubusercontent.com/weloopdev/yfimg/yangxi/tapd/1497752938523.png)
+
+- 点击下图红框区域
+
+  ![image](https://raw.githubusercontent.com/weloopdev/yfimg/yangxi/tapd/1497753040158.png)
+
+
+- 自动会打开工作目录，将修改的文件拷贝过去就ok
 
 ## 参考资料
 

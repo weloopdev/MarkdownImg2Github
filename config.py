@@ -5,7 +5,7 @@
 """
 
 # git仓库本机路径 比如 ~/Work/Github/yfimg
-LOCAL_PATH = ''
+LOCAL_PATH = '~/Work/Github/yfimg'
 
 # github名称
 GITHUB_NAME = 'weloopdev'
@@ -17,4 +17,4 @@ REPO_NAME = 'yfimg'
 IMAGE_RELATIVE_PATH = 'tapd'
 
 # 你所在的分支 比如 yangxi
-BRANCH = ''
+BRANCH = 'yangxi'

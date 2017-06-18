@@ -5,8 +5,8 @@ import time
 import platform
 import config
 
-
 CONFIG_FILE = 'config.py'
+
 
 def check_config():
     if not all((config.LOCAL_PATH, config.GITHUB_NAME, config.REPO_NAME, config.IMAGE_RELATIVE_PATH, config.BRANCH)):
@@ -21,8 +21,6 @@ def check_config():
     image_save_path = '{}/{}'.format(local_path, config.IMAGE_RELATIVE_PATH)
     if not os.path.exists(image_save_path):
         os.makedirs(image_save_path)
-        # notify('{}路径不存在'.format(image_save_path))
-        # return False
 
     return True
 
@@ -52,15 +50,16 @@ def time_now_str():
     return time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time_sec))
 
 
-def compress_png(raw_img):
+def compress_png(raw_img, remove_raw):
     """ use pngquant to compress:https://github.com/pornel/pngquant"""
     print 'start compress_png:%s' % raw_img
     if not os.path.exists(raw_img):
         notify('压缩图片源不存在', '压缩图片失败')
 
     compress_img = image_path('png')
-    if not subprocess.call('pngquant/pngquant --force {0} -o {1}'.format(raw_img, compress_img), shell=True):
-        os.remove(raw_img)
+    if not subprocess.call('pngquant/pngquant --force {0} -o {1} --quality=50-80'.format(raw_img, compress_img), shell=True):
+        if remove_raw:
+            os.remove(raw_img)
         return compress_img
     else:
         return raw_img
@@ -70,15 +69,20 @@ def convert_compress_img(raw_img, remove_raw):
     file_type = raw_img.split('.')[-1]
     img_path = raw_img
 
+    compress_remove_raw = remove_raw
     if 0 != cmp(file_type, 'png'):
         img_path = convert_to_png(raw_img, remove_raw)
+        compress_remove_raw = True
 
-    return compress_png(img_path)
+    return compress_png(img_path, compress_remove_raw)
 
 
 """ 下面的方法是mac相关的"""
+
+
 def check_is_mac():
     return 0 == cmp(platform.system(), 'Darwin') or 0 == cmp(platform.system(), 'mac')
+
 
 def notify(text, title='上传Github'):
     os.system('''

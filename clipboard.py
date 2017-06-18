@@ -33,7 +33,7 @@ def get_pasteboard_file_path():
     if NSFilenamesPboardType in data_type:
         # 获取到这个文件的路径和类型
         file_path = pasteboard.propertyListForType_(NSFilenamesPboardType)[0]
-        return file_path, 0
+        return file_path, False
 
     # 剪贴板是png,tiff文件,生成文件返回文件路径
     for file_type, pastedboard_file_type in TYPE_MAP.items():
@@ -45,11 +45,11 @@ def get_pasteboard_file_path():
         ret = data.writeToFile_atomically_(file_path, False)
         if not ret:
             notify('从剪贴板写入文件失败')
-            return '', 1
+            return '', True
 
-        return file_path, 1
+        return file_path, True
 
-    return '', 0
+    return '', False
 
 
 def get_pasteboard_img_path():
@@ -59,8 +59,6 @@ def get_pasteboard_img_path():
     if not file_path:
         notify('请先截图或者复制一张图片')
         return ''
-
-    print 'path:{0}, remove:{1}'.format(file_path, remove_raw)
 
     file_name = os.path.split(file_path)[-1]
     file_type = file_name.split('.')[-1]
